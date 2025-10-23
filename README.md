@@ -107,11 +107,12 @@ fun Saludo(lugar: String){
    }
 ```
 No siempre es la mejor solución ni la que buscamos!
+
 2. Crear un elemento componible aparte para previsualizar lo que deseamos
 ```Kotlin
 @Preview
 @Composable
-fun Previsualización(){
+fun Previsualizacion(){
     Saludo("Compose")
 }
 
@@ -119,6 +120,106 @@ fun Previsualización(){
 fun Saludo(lugar: String){
     Text("Hola Mundo desde $lugar!")
 }
+``` 
+#### Resultado final
+![Previsualización del Hola Mundo](./resources/prev_hola_mundo.png)
+
+### Elementos de Layout
+Si queremos agregar otro elemento Text en Saludo veremos algo como esto:
+![Previsualización de dos elementos Text sin un elemento de Layout](./resources/prev_sin_layout.png)
+
+Para esto tenemos los elementos de Layout! 
+Aprendamos el primero:
+#### Column
+```Kotlin
+@Composable
+fun Saludo(lugar: String) {
+    Column {
+        Text("Hola mundo desde $lugar!")
+        Text("¿Preparado?")
+    }
+}
 ```
+Resultado:
+![Previsualización de dos Text con elemento Column](./resources/prev_column.png)
 
 ## Clase 3-10
+
+
+
+
+
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun Previsualizacion(){
+Listado()
+}
+
+@Composable
+fun Listado(){
+val scrollState = rememberScrollState()
+Column (
+Modifier.verticalScroll(scrollState).fillMaxSize(),
+verticalArrangement = Arrangement.Center,
+horizontalAlignment = Alignment.CenterHorizontally
+) {
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+Tarjeta()
+}
+}
+
+@Composable
+fun Imagen(){
+Image(
+painterResource(R.drawable.ic_launcher_foreground),
+"Icono de Android",
+modifier = Modifier.clip(CircleShape).background(Color.Green).size(60.dp)
+)
+}
+
+@Composable
+fun Saludo(lugar: String){
+Column(
+Modifier.padding(6.dp)
+) {
+Text("Hola Mundo desde $lugar!")
+Spacer(Modifier.height(6.dp))
+Text("¿Preparado?")
+}
+}
+
+@Composable
+fun Tarjeta(){
+Row(
+Modifier.padding(6.dp)
+){
+Imagen()
+Saludo("Compose")
+}
+}
