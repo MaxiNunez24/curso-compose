@@ -23,12 +23,14 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,11 +39,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.google.android.material.shape.TriangleEdgeTreatment
 import com.maxi.cfp401.cursoappsmoviles.ui.theme.CursoAppsMovilesTheme
 
 
@@ -56,13 +62,13 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Preview(showSystemUi = false)
+// @Preview(showSystemUi = false)
 @Composable
 fun PrevisualizacionDark() {
     CursoAppsMovilesTheme(
         darkTheme = true
     ) {
-        Surface{
+        Surface {
             Listado()
         }
     }
@@ -74,7 +80,7 @@ fun Previsualizacion() {
     CursoAppsMovilesTheme {
         Surface(
             color = MaterialTheme.colorScheme.background
-        ){
+        ) {
             Tarjeta()
         }
     }
@@ -92,7 +98,7 @@ fun Listado() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        for(i in 1..20)Tarjeta()
+        for (i in 1..20) Tarjeta()
     }
 }
 
@@ -120,9 +126,7 @@ fun Imagen() {
             .size(45.dp)
             .clip(CircleShape)
             .border(
-                2.dp,
-                MaterialTheme.colorScheme.outline,
-                CircleShape
+                2.dp, MaterialTheme.colorScheme.outline, CircleShape
             )
     )
 }
@@ -130,17 +134,25 @@ fun Imagen() {
 @Composable
 fun Saludo(lugar: String) {
     Column {
-        Text("Hola Mundo desde $lugar!", color = MaterialTheme.colorScheme.primary, fontFamily = FontFamily(Font(R.font.starkwalker_classic)))
+        Text(
+            "Hola Mundo desde $lugar!",
+            color = MaterialTheme.colorScheme.primary,
+            fontFamily = FontFamily(Font(R.font.starkwalker_classic))
+        )
         Spacer(Modifier.height(3.dp))
-        Text("¿Preparado?", color = MaterialTheme.colorScheme.primary, fontFamily = FontFamily(Font(R.font.starkwalker_classic)))
+        Text(
+            "¿Preparado?",
+            color = MaterialTheme.colorScheme.primary,
+            fontFamily = FontFamily(Font(R.font.starkwalker_classic))
+        )
     }
 }
 
 @Composable
-fun Boton(){
-    val contador = remember{ mutableStateOf(0) }
+fun Boton() {
+    val contador = remember { mutableStateOf(0) }
     Button(
-        onClick = {contador.value++},
+        onClick = { contador.value++ },
         colors = ButtonColors(Color.Black, Color.White, Color.Gray, Color.Black),
         enabled = true
 
@@ -153,17 +165,79 @@ fun Boton(){
 // @Preview(showBackground = true)
 @Composable
 private fun HelloContent() {
-    var valor by    remember{ mutableStateOf("")}
+    var valor by remember { mutableStateOf("") }
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
             text = "Hello!",
             modifier = Modifier.padding(bottom = 8.dp),
             style = MaterialTheme.typography.bodyMedium
         )
-        OutlinedTextField(
-            value =  valor,
-            onValueChange = { valor = it},
-            label = { Text("Name") }
+        OutlinedTextField(value = valor, onValueChange = { valor = it }, label = { Text("Name") })
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ControlCantidad() {
+    val cantidad = remember { mutableStateOf(0) }
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Decremento(cantidad)
+            Text(
+                "${cantidad.value}", fontSize = 35.sp, modifier = Modifier.padding(20.dp)
+            )
+            Incremento(cantidad)
+        }
+        Reset(cantidad)
+    }
+}
+
+@Composable
+fun Reset(cantidad: MutableState<Int>) {
+    Button(
+        onClick = { cantidad.value = 0 },
+        colors = ButtonColors(
+            Color.Black,
+            Color.White,
+            Color.Gray,
+            Color.Black
+        )) {
+        Text("Resetear")
+    }
+}
+
+@Composable
+fun Decremento(cantidad: MutableState<Int>) {
+    Button(
+        onClick = { if (cantidad.value > 0) cantidad.value-- }, modifier = Modifier.padding(16.dp),
+        colors = ButtonColors(
+            Color.Red,
+            Color.White,
+            Color.Gray,
+            Color.Red
         )
+    ) {
+        Text("—", fontSize = 20.sp)
+    }
+}
+
+@Composable
+fun Incremento(cantidad: MutableState<Int>) {
+    Button(
+        onClick = { cantidad.value++ }, modifier = Modifier.padding(16.dp),
+        colors = ButtonColors(
+            Color.Green,
+            Color.White,
+            Color.Gray,
+            Color.Green
+        )
+    ) {
+        Text("+", fontSize = 20.sp)
     }
 }
