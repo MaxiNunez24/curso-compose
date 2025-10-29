@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// @Preview(showSystemUi = false)
+@Preview(showSystemUi = false)
 @Composable
 fun PrevisualizacionDark() {
     CursoAppsMovilesTheme(
@@ -173,71 +173,5 @@ private fun HelloContent() {
             style = MaterialTheme.typography.bodyMedium
         )
         OutlinedTextField(value = valor, onValueChange = { valor = it }, label = { Text("Name") })
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ControlCantidad() {
-    val cantidad = remember { mutableStateOf(0) }
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Decremento(cantidad)
-            Text(
-                "${cantidad.value}", fontSize = 35.sp, modifier = Modifier.padding(20.dp)
-            )
-            Incremento(cantidad)
-        }
-        Reset(cantidad)
-    }
-}
-
-@Composable
-fun Reset(cantidad: MutableState<Int>) {
-    Button(
-        onClick = { cantidad.value = 0 },
-        colors = ButtonColors(
-            Color.Black,
-            Color.White,
-            Color.Gray,
-            Color.Black
-        )) {
-        Text("Resetear")
-    }
-}
-
-@Composable
-fun Decremento(cantidad: MutableState<Int>) {
-    Button(
-        onClick = { if (cantidad.value > 0) cantidad.value-- }, modifier = Modifier.padding(16.dp),
-        colors = ButtonColors(
-            Color.Red,
-            Color.White,
-            Color.Gray,
-            Color.Red
-        )
-    ) {
-        Text("—", fontSize = 20.sp)
-    }
-}
-
-@Composable
-fun Incremento(cantidad: MutableState<Int>) {
-    Button(
-        onClick = { cantidad.value++ }, modifier = Modifier.padding(16.dp),
-        colors = ButtonColors(
-            Color.Green,
-            Color.White,
-            Color.Gray,
-            Color.Green
-        )
-    ) {
-        Text("+", fontSize = 20.sp)
     }
 }
