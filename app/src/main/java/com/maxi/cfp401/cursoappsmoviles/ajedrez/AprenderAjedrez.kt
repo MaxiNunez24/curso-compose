@@ -97,7 +97,6 @@ fun AjedrezApp() {
     }
 }
 
-@Preview
 @Composable
 fun Header(
     onPiezaClick: (Int) -> Unit = {}
@@ -174,35 +173,40 @@ fun TarjetaPieza(pieza: Pieza) {
             .fillMaxWidth()
             .background(Color.Transparent)
     ) {
-        Row(
+        Column(
             modifier = Modifier
-                .padding(2.dp)
                 .drawBehind {
                     drawRoundRect(
                         Color.White,
                         cornerRadius = CornerRadius(10.dp.toPx()),
                     )
                 },
-            verticalAlignment = Alignment.CenterVertically
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = pieza.nombre,
-                style = MaterialTheme.typography.headlineMedium,
-                fontSize = 40.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(16.dp)
-            )
+            Row(
+                modifier = Modifier,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = pieza.nombre,
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontSize = 40.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(16.dp)
+                )
 
-            Image(
-                painterResource(pieza.imagen), pieza.nombre, modifier = Modifier.padding(10.dp)
-            )
+                Image(
+                    painterResource(pieza.imagen), pieza.nombre, modifier = Modifier.padding(10.dp)
+                )
+            }
+            Text("Valor en material: ${pieza.puntaje}")
         }
-
         Text(
             text = pieza.descripcion,
             style = MaterialTheme.typography.bodyLarge,
             fontSize = 20.sp,
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         )
         Column(
             Modifier
@@ -216,7 +220,12 @@ fun TarjetaPieza(pieza: Pieza) {
                 style = MaterialTheme.typography.headlineSmall,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier
+                    .padding(16.dp)
+                    .drawBehind {
+                        drawRoundRect(Color.White, cornerRadius = CornerRadius(10f))
+                    }
+                    .padding()
             )
             Image(painterResource(pieza.movimientos), "Movimientos de ${pieza.nombre}")
         }

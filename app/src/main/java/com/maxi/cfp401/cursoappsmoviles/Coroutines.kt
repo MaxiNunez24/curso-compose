@@ -1,5 +1,6 @@
 package com.maxi.cfp401.cursoappsmoviles
 
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -90,15 +91,6 @@ fun busquedaDicotomica() = runBlocking {
 }
 
 // Coroutinas mucho más livianas que Threads
-fun experimentoVolumen() = runBlocking {
-    // Probar lo mismo sin asincronía y con asincronía
-    for (i in 1..100000) {
-        launch {
-            delay(Random.nextInt(1, 3) * 1000L)
-            println(i)
-        }
-    }
-}
 
 fun esperarParaSeguir() = runBlocking {
     val corrutina1 = launch {
@@ -118,7 +110,7 @@ fun esperarParaSeguir() = runBlocking {
     corrutina2.join()
 }
 
-fun ejemploCoroutineScope() = runBlocking {
+fun ejemploCoroutineScope2() = runBlocking {
 
     // Es parecida a runBlocking, sólo que debe ser llamada desde una función suspend y no bloquea(sincrónico), sino que suspende
 
@@ -165,16 +157,16 @@ fun ejemploSuspend() = runBlocking {
 }
 
 // Ejemplo concurrente
-fun ejemploParalelo() = runBlocking {
+fun ejemploParalelo2() = runBlocking {
     // Paralelo es concurrente pero con ayuda del hardware (un proceso para cada núcleo)
     val tiempo1 = System.currentTimeMillis()
 
-    suspend fun dato1(): Int{
+    suspend fun dato1(): Int {
         delay(3000)
         return 3
     }
 
-    suspend fun dato2(): Int{
+    suspend fun dato2(): Int {
         delay(3000)
         return 3
     }
@@ -186,9 +178,81 @@ fun ejemploParalelo() = runBlocking {
 
     val tiempo2 = System.currentTimeMillis()
 
-    println("Tiempo total: ${tiempo2-tiempo1} milisegundos")
+    println("Tiempo total: ${tiempo2 - tiempo1} milisegundos")
+}
+
+suspend fun realizarTarea() {
+    delay(2000)
+    println("Pasaron 2 segundos")
+}
+
+fun ejemploRunBlocking() {
+    println("Hola! inicio el programa")
+
+    runBlocking {
+        println("Se bloquea el hilo")
+        realizarTarea()
+    }
+
+    println("Se reanuda el hilo")
+    println("Chau! termino el programa")
+}
+
+fun ejemploCoroutineScope() {
+    println("Hola! inicio el programa")
+
+    GlobalScope.launch {
+        coroutineScope {
+            realizarTarea()
+        }
+    }
+
+    println("¿Se reanuda el hilo?")
+    println("Chau! termino el programa")
+}
+
+
+
+fun ejemploSincronia() {
+    val tiempoInicial = System.currentTimeMillis()
+    runBlocking {
+        val dato1 = consultaBD()
+        println("Dato1 cargado")
+        val dato2 = consultaBD()
+        println("Dato2 cargado")
+
+        println("Suma de los datos: ${dato1 + dato2}")
+    }
+    val tiempoFinal = System.currentTimeMillis()
+    println("Tiempo total: ${tiempoFinal - tiempoInicial}")
+}
+
+suspend fun consultaBD(): Int {
+    delay(3000)
+    return 3
+}
+fun ejemploParalelo(){
+    val tiempoInicial = System.currentTimeMillis()
+    runBlocking {
+        val dato1 = async { consultaBD() }
+        val dato2 = async { consultaBD() }
+
+        println("Suma de los datos: ${dato1.await() + dato2.await()}")
+    }
+    val tiempoFinal = System.currentTimeMillis()
+    println("Tiempo total: ${tiempoFinal - tiempoInicial}")
+}
+
+fun experimentoVolumen() = runBlocking {
+    // Probar lo mismo sin asincronía y con asincronía
+    for (i in 1..1000000) {
+        launch {
+            delay(Random.nextInt(1, 3) * 1000L)
+            println(i)
+        }
+    }
 }
 
 fun main() {
-
+    experimentoVolumen()
 }

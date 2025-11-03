@@ -6,15 +6,14 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 
-
 fun cargarPiezas(): Flow<Pieza> = flow {
     val pieza =
         Pieza(
-            "Peón",
-            R.drawable.peon,
-            1,
-            R.drawable.movimientos_peon,
-            """
+            nombre = "Peón",
+            imagen = R.drawable.peon,
+            puntaje = 1,
+            movimientos = R.drawable.movimientos_peon,
+            descripcion =  """
             ○ El peón es la pieza de ajedrez más sencilla, su valor en material es 1 punto. 
             ○ Se mueve únicamente una casilla hacia adelante a la vez, a excepción del primer movimiento donde puede moverse dos casillas. 
             ○ No puede retroceder. 
@@ -23,7 +22,7 @@ fun cargarPiezas(): Flow<Pieza> = flow {
         """.trimIndent()
         )
 
-    (1..30).forEach{
+    (1..30).forEach {
         emit(pieza)
     }
 }
