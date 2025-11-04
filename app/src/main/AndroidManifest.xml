@@ -14,7 +14,8 @@
             android:name=".ajedrez.AprenderAjedrez"
             android:exported="true"
             android:label="@string/title_activity_aprender_ajedrez"
-            android:theme="@style/Theme.CursoAppsMoviles">
+            android:theme="@style/Theme.CursoAppsMoviles"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
