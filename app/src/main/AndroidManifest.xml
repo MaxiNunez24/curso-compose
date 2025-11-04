@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/wolf"
+        android:icon="@drawable/peon"
         android:label="@string/app_name"
         android:roundIcon="@drawable/wolf"
         android:supportsRtl="true"
