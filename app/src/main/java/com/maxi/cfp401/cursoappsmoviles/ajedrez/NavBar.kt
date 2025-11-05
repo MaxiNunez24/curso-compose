@@ -35,6 +35,6 @@ fun PiezaNav(
         modifier = Modifier
             .width(size)
             .height(size)
-            .clickable { onPiezaClick(piezaNav.id) }
+            .clickable { onPiezaClick(piezaNav.id - 1) }
     )
 }

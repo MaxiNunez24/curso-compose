@@ -68,6 +68,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import com.maxi.cfp401.cursoappsmoviles.DisclaimerChess
 import com.maxi.cfp401.cursoappsmoviles.ajedrez.ui.theme.CursoAppsMovilesTheme
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -77,6 +81,16 @@ class AprenderAjedrez : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        // Oculta las barras del sistema (modo inmersivo moderno)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        val controller = WindowInsetsControllerCompat(window, window.decorView)
+        controller.hide(WindowInsetsCompat.Type.systemBars())
+        controller.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+
+
         setContent {
             AjedrezApp()
         }
@@ -96,6 +110,9 @@ fun ListadoPiezas(
     ) {
         items(listadoPiezas) { piezaActual ->
             TarjetaPieza(piezaActual)
+        }
+        item {
+            DisclaimerChess()
         }
     }
 }

@@ -75,7 +75,7 @@ fun TarjetaPieza(pieza: Pieza) {
                 .padding(top = 16.dp)
                 .drawBehind {
                     drawRoundRect(
-                        Color.White,
+                        Color(0xFFf3f3f3),
                         cornerRadius = CornerRadius(10.dp.toPx()),
                     )
                 }
@@ -101,7 +101,24 @@ fun TarjetaPieza(pieza: Pieza) {
                     .border(1.dp, Color.Black, RectangleShape)
                     .padding(8.dp)
             )
-            Image(painterResource(pieza.movimientos), "Movimientos de ${pieza.nombre}")
+
+            pieza.movimientos.forEach { (texto, imagen) ->
+                Text(
+                    text = texto,
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontSize = 20.sp,
+                    modifier = Modifier
+                        .padding(top = 8.dp, bottom = 8.dp)
+                        .drawBehind {
+                            drawRoundRect(
+                                Color(0xFFf3f3f3),
+                                cornerRadius = CornerRadius(10.dp.toPx()),
+                            )
+                        }
+                        .padding(16.dp)
+                )
+                Image(painterResource(imagen), "Movimientos de ${pieza.nombre}")
+            }
         }
     }
     Spacer(Modifier.height(24.dp))
