@@ -19,7 +19,7 @@ fun Navegador(){
             LauncherScreen(navController)
         }
         composable("ajedrez_app"){
-            AjedrezApp(navController)
+            AjedrezApp()
         }
     }
 }
