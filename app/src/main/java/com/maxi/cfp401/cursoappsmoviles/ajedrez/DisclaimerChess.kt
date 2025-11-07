@@ -1,4 +1,4 @@
-package com.maxi.cfp401.cursoappsmoviles
+package com.maxi.cfp401.cursoappsmoviles.ajedrez
 
 import android.content.Intent
 import android.net.Uri
