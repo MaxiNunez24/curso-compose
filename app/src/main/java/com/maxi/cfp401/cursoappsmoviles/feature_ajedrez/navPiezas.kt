@@ -1,4 +1,4 @@
-package com.maxi.cfp401.cursoappsmoviles.ajedrez
+package com.maxi.cfp401.cursoappsmoviles.feature_ajedrez
 
 import com.maxi.cfp401.cursoappsmoviles.R
 

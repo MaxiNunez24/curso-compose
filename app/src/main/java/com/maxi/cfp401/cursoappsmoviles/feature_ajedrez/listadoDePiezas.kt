@@ -1,10 +1,6 @@
-package com.maxi.cfp401.cursoappsmoviles.ajedrez
+package com.maxi.cfp401.cursoappsmoviles.feature_ajedrez
 
 import com.maxi.cfp401.cursoappsmoviles.R
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.runBlocking
 
 val listadoPiezas = listOf<Pieza>(
 
@@ -60,50 +56,50 @@ val listadoPiezas = listOf<Pieza>(
                     to R.drawable.caballo_particularidad,
         ),
     ),
-        Pieza(
-            "Alfil",
-            R.drawable.alfil,
-            "3",
-            "El alfil se mueve en diagonal cualquier número de casillas, siempre sobre el mismo color de casillas. Cada jugador comienza con un alfil de casillas claras y uno de casillas oscuras.",
-            mapOf(
-                "Dirección: Solo en diagonal."
-                        to R.drawable.alfil_direccion,
-                "Distancia: Puede avanzar tantas casillas como estén libres en esa dirección."
-                        to R.drawable.alfil_distancia,
-                "Bloqueo: No puede saltar sobre otras piezas."
-                        to R.drawable.alfil_bloqueo,
-                "Captura: Captura en la misma dirección diagonal."
-                        to R.drawable.alfil_captura,
-            ),
+    Pieza(
+        "Alfil",
+        R.drawable.alfil,
+        "3",
+        "El alfil se mueve en diagonal cualquier número de casillas, siempre sobre el mismo color de casillas. Cada jugador comienza con un alfil de casillas claras y uno de casillas oscuras.",
+        mapOf(
+            "Dirección: Solo en diagonal."
+                    to R.drawable.alfil_direccion,
+            "Distancia: Puede avanzar tantas casillas como estén libres en esa dirección."
+                    to R.drawable.alfil_distancia,
+            "Bloqueo: No puede saltar sobre otras piezas."
+                    to R.drawable.alfil_bloqueo,
+            "Captura: Captura en la misma dirección diagonal."
+                    to R.drawable.alfil_captura,
         ),
-            Pieza(
-                "Dama (Reina)",
-                R.drawable.reina,
-                "9",
-                "La dama combina el poder de la torre y el alfil, moviéndose en línea recta en cualquier dirección: vertical, horizontal o diagonal. Es la pieza más fuerte del tablero.",
-                mapOf(
-                    "Dirección: Puede moverse en cualquier dirección (horizontal, vertical o diagonal)."
-                            to R.drawable.dama_direccion,
-                    "Distancia: Puede recorrer cualquier número de casillas mientras estén libres."
-                            to R.drawable.dama_distancia,
-                    "Bloqueo: No puede saltar sobre otras piezas."
-                            to R.drawable.dama_bloqueo,
-                    "Captura: Captura ocupando la casilla de destino."
-                            to R.drawable.dama_captura,
-                ),
-            ),
-            Pieza(
-                "Rey",
-                R.drawable.rey,
-                "∞",
-                "El rey es la pieza más importante: si se lo amenaza y no puede escapar, la partida termina. Se mueve una casilla en cualquier dirección. Valor en material: Infinito (ya que su pérdida significa el fin del juego).",
-                mapOf(
-                    "Distancia y dirección: Solo una casilla por jugada en cualquier dirección."
-                            to R.drawable.rey_direccion,
-                    "Captura: Captura moviéndose a la casilla de la pieza enemiga."
-                            to R.drawable.rey_captura,
-                    "Enroque: Movimiento especial junto con una torre, en el cual el rey se mueve dos casillas hacia la torre y esta salta al lado del rey. Solo puede hacerse si ninguna de las dos piezas se movió antes y no hay piezas entre ellas. (Enroque largo y corto)"
-                            to R.drawable.rey_enroque,
-                ),
-            )
-        )
+    ),
+    Pieza(
+        "Dama (Reina)",
+        R.drawable.reina,
+        "9",
+        "La dama combina el poder de la torre y el alfil, moviéndose en línea recta en cualquier dirección: vertical, horizontal o diagonal. Es la pieza más fuerte del tablero.",
+        mapOf(
+            "Dirección: Puede moverse en cualquier dirección (horizontal, vertical o diagonal)."
+                    to R.drawable.dama_direccion,
+            "Distancia: Puede recorrer cualquier número de casillas mientras estén libres."
+                    to R.drawable.dama_distancia,
+            "Bloqueo: No puede saltar sobre otras piezas."
+                    to R.drawable.dama_bloqueo,
+            "Captura: Captura ocupando la casilla de destino."
+                    to R.drawable.dama_captura,
+        ),
+    ),
+    Pieza(
+        "Rey",
+        R.drawable.rey,
+        "∞",
+        "El rey es la pieza más importante: si se lo amenaza y no puede escapar, la partida termina. Se mueve una casilla en cualquier dirección. Valor en material: Infinito (ya que su pérdida significa el fin del juego).",
+        mapOf(
+            "Distancia y dirección: Solo una casilla por jugada en cualquier dirección."
+                    to R.drawable.rey_direccion,
+            "Captura: Captura moviéndose a la casilla de la pieza enemiga."
+                    to R.drawable.rey_captura,
+            "Enroque: Movimiento especial junto con una torre, en el cual el rey se mueve dos casillas hacia la torre y esta salta al lado del rey. Solo puede hacerse si ninguna de las dos piezas se movió antes y no hay piezas entre ellas. (Enroque largo y corto)"
+                    to R.drawable.rey_enroque,
+        ),
+    )
+)

@@ -1,4 +1,4 @@
-package com.maxi.cfp401.cursoappsmoviles.ajedrez
+package com.maxi.cfp401.cursoappsmoviles.feature_ajedrez
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
