@@ -48,6 +48,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.android.material.shape.TriangleEdgeTreatment
+import com.maxi.cfp401.cursoappsmoviles.navegacion.Navegador
 import com.maxi.cfp401.cursoappsmoviles.ui.theme.CursoAppsMovilesTheme
 
 
@@ -56,7 +57,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CursoAppsMovilesTheme {
-                Listado()
+                Navegador()
             }
         }
     }
@@ -158,20 +159,5 @@ fun Boton() {
 
     ) {
         Text("Clicks ${contador.value}")
-    }
-}
-
-
-// @Preview(showBackground = true)
-@Composable
-private fun HelloContent() {
-    var valor by remember { mutableStateOf("") }
-    Column(modifier = Modifier.padding(16.dp)) {
-        Text(
-            text = "Hello!",
-            modifier = Modifier.padding(bottom = 8.dp),
-            style = MaterialTheme.typography.bodyMedium
-        )
-        OutlinedTextField(value = valor, onValueChange = { valor = it }, label = { Text("Name") })
     }
 }
