@@ -6,5 +6,5 @@ sealed class Screen(val route: String){
     data object ColoresRGB: Screen("colores_rgb_screen")
     data object ListadoPrueba: Screen("listado_prueba_screen")
     data object Launcher: Screen("launcher_screen")
-
+    data object ColorPicker: Screen("color_picker")
 }
