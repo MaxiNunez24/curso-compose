@@ -9,7 +9,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.maxi.cfp401.cursoappsmoviles.ui.theme.CursoAppsMovilesTheme
@@ -31,6 +30,10 @@ fun LauncherScreen(navController: NavController) {
 
             Button(onClick = { navController.navigate(Screen.ListadoPrueba.route) }) {
                 Text("Ir a pruebas de listado", fontSize = 30.sp)
+            }
+
+            Button(onClick = { navController.navigate(Screen.ColorPicker.route) }) {
+                Text("Color Picker", fontSize = 30.sp)
             }
 
             Button(onClick = { navController.popBackStack() }) {
