@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.maxi.cfp401.cursoappsmoviles.feature_ajedrez.AjedrezApp
 import com.maxi.cfp401.cursoappsmoviles.feature_color_picker.ColorPickerApp
+import com.maxi.cfp401.cursoappsmoviles.feature_color_picker.ColorPickerScreen
 import com.maxi.cfp401.cursoappsmoviles.feature_ejercicios.ListadoPrueba
 
 @Preview(showSystemUi = true)
@@ -27,7 +28,7 @@ fun NavGraph(){
             ListadoPrueba()
         }
         composable(Screen.ColorPicker.route){
-            ColorPickerApp()
+            ColorPickerScreen()
         }
     }
 }
